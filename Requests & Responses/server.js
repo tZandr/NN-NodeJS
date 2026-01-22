@@ -1,14 +1,22 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((req, res) => {
   console.log(req.url, req.method); // "/", "GET"
 
   // set header content type
   res.setHeader("Content-Type", "text/html");
-  res.write('<head><link rel="stylesheet" href="#"></head>');
-  res.write("<p>Hello World</p>");
-  res.write("<p>Hello again</p>");
-  res.end();
+
+  // send an html file
+  fs.readFile("./views/index.html", (error, data) => {
+    if (error) {
+      console.log(error);
+      res.end();
+    } else {
+      // res.write(data); -- Not needed if only one thing is sent.
+      res.end();
+    }
+  });
 });
 
 server.listen(3000, "localhost", () => {
