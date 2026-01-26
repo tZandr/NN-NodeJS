@@ -7,5 +7,11 @@ const app = express();
 app.listen(3000);
 
 app.get("/", (req, res) => {
-  res.send("<p>home</p>");
+  // res.send("<p>home</p>"); -- instead, do below:
+  res.sendFile("./views/index.html", { root: __dirname }); // __dirname = current directory
+});
+
+app.get("/about", (req, res) => {
+  // res.send("<p>about</p>");
+  res.sendFile("./views/about.html", { root: __dirname });
 });
