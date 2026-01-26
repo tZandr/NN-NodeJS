@@ -15,3 +15,14 @@ app.get("/about", (req, res) => {
   // res.send("<p>about</p>");
   res.sendFile("./views/about.html", { root: __dirname });
 });
+
+// redirects
+app.get("/about-us", (req, res) => {
+  res.redirect("/about");
+});
+
+// 404 page
+app.use((req, res) => {
+  // uses when no other route matches, aka when it reaches this point of the code.
+  res.status(404).res.sendFile("./views/404.html", { root: __dirname });
+});
