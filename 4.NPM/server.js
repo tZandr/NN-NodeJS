@@ -32,8 +32,8 @@ const server = http.createServer((req, res) => {
       res.setHeader("Location", "/about"); // relocate to /about
       res.end(); // we don't need to send any more data
       break;
-    default:
-      path += "404.html";
+    default: // Any other adress
+      path += "404.html"; // ... gets redirected here
       res.statusCode = 404; // Not found
       break;
   }
